@@ -79,12 +79,18 @@ const useSubmit = () => {
         // if (apiEndpoint === officialAPIEndpoint) {
         //   throw new Error(t('noApiKeyWarning') as string);
         // }
+        // free endpoin
+        let apiSk = ''
+        if (apiEndpoint === officialAPIEndpoint) {
+          apiSk = 'ChatGPT-Hackers';
+        }
 
         // other endpoints
         stream = await getChatCompletionStream(
           useStore.getState().apiEndpoint,
           messages,
-          chats[currentChatIndex].config
+          chats[currentChatIndex].config,
+          apiSk,
         );
       } else if (apiKey) {
         // own apikey
